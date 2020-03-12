@@ -2,24 +2,25 @@ import { $ } from "@dekproject/scope";
 import request from 'request';
 
 class Comtele{
-    constructor(authKey, Sender){
+    constructor(authKey, sender){
         this.authKey = authKey;
-        this.Sender = Sender;
+        this.sender = sender;
     }
 
-    send(Receivers, Content){
+    send(receivers, content){
         return new Promise((resolve, reject) => {
             request({
                 method: "POST",
-                url: "https://sms.comtele.com.br/api/v2/send",
+                uri: "https://sms.comtele.com.br/api/v2/send",
                 headers: {
                     "content-type": "application/json",
                     "auth-key": this.authKey
+                },
+                form: {
+                    sender: this.sender,
+                    receivers,
+                    content 
                 }
-            }, {
-                Sender: this.Sender,
-                Receivers,
-                Content 
             }, (err, res) => {
                 if (err) reject(err);   
                 else resolve();

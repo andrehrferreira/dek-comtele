@@ -42,7 +42,7 @@ var Comtele = function () {
                     Receivers: Receivers,
                     Content: Content
                 }, function (err, res) {
-                    if (error) reject(error);else resolve();
+                    if (err) reject(err);else resolve();
                 });
             });
         }

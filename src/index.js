@@ -21,7 +21,7 @@ class Comtele{
                 Receivers,
                 Content 
             }, (err, res) => {
-                if (error) reject(error);   
+                if (err) reject(err);   
                 else resolve();
             });
         });

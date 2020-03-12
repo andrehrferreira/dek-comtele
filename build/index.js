@@ -27,20 +27,23 @@ var Comtele = function () {
     _createClass(Comtele, [{
         key: "send",
         value: function send(Receivers, Content) {
-            (0, _request2.default)({
-                method: "POST",
-                url: "https://sms.comtele.com.br/api/v2/send",
-                headers: {
-                    "content-type": "application/json",
-                    "auth-key": this.authKey
-                }
-            }, {
-                Sender: this.Sender,
-                Receivers: Receivers,
-                Content: Content
-            }, function (error, response, body) {
-                if (error) throw new Error(error);
-                console.log(body);
+            var _this = this;
+
+            return new Promise(function (resolve, reject) {
+                (0, _request2.default)({
+                    method: "POST",
+                    url: "https://sms.comtele.com.br/api/v2/send",
+                    headers: {
+                        "content-type": "application/json",
+                        "auth-key": _this.authKey
+                    }
+                }, {
+                    Sender: _this.Sender,
+                    Receivers: Receivers,
+                    Content: Content
+                }, function (err, res) {
+                    if (error) reject(error);else resolve();
+                });
             });
         }
     }]);

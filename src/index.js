@@ -8,20 +8,22 @@ class Comtele{
     }
 
     send(Receivers, Content){
-        request({
-            method: "POST",
-            url: "https://sms.comtele.com.br/api/v2/send",
-            headers: {
-                "content-type": "application/json",
-                "auth-key": this.authKey
-            }
-        }, {
-            Sender: this.Sender,
-            Receivers,
-            Content 
-        }, (error, response, body) => {
-            if (error) throw new Error(error);          
-            console.log(body);
+        return new Promise((resolve, reject) => {
+            request({
+                method: "POST",
+                url: "https://sms.comtele.com.br/api/v2/send",
+                headers: {
+                    "content-type": "application/json",
+                    "auth-key": this.authKey
+                }
+            }, {
+                Sender: this.Sender,
+                Receivers,
+                Content 
+            }, (err, res) => {
+                if (error) reject(error);   
+                else resolve();
+            });
         });
     }
 }

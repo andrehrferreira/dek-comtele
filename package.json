@@ -1,6 +1,6 @@
 {
     "name": "@dekproject/comtele",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Comtele interface plugin for DEK",
     "main": "./build/index.js",
     "scripts": {

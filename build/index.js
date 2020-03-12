@@ -17,30 +17,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Comtele = function () {
-    function Comtele(authKey, Sender) {
+    function Comtele(authKey, sender) {
         _classCallCheck(this, Comtele);
 
         this.authKey = authKey;
-        this.Sender = Sender;
+        this.sender = sender;
     }
 
     _createClass(Comtele, [{
         key: "send",
-        value: function send(Receivers, Content) {
+        value: function send(receivers, content) {
             var _this = this;
 
             return new Promise(function (resolve, reject) {
                 (0, _request2.default)({
                     method: "POST",
-                    url: "https://sms.comtele.com.br/api/v2/send",
+                    uri: "https://sms.comtele.com.br/api/v2/send",
                     headers: {
                         "content-type": "application/json",
                         "auth-key": _this.authKey
+                    },
+                    form: {
+                        sender: _this.sender,
+                        receivers: receivers,
+                        content: content
                     }
-                }, {
-                    Sender: _this.Sender,
-                    Receivers: Receivers,
-                    Content: Content
                 }, function (err, res) {
                     if (err) reject(err);else resolve();
                 });
